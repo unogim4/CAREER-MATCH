@@ -1,12 +1,11 @@
-// src/pages/SignIn.js
+// src/pages/SignUp.js
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
-// 스타일 정의 및 로그인 UI 구성
-const SignInContainer = styled.div`
+const SignUpContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +13,7 @@ const SignInContainer = styled.div`
   background-color: #f4f5f7;
 `;
 
-const LoginCard = styled.div`
+const SignUpCard = styled.div`
   background-color: white;
   padding: 30px;
   border-radius: 8px;
@@ -48,33 +47,32 @@ const Button = styled.button`
   }
 `;
 
-const SignUpLink = styled.p`
+const SignInLink = styled.p`
   margin-top: 15px;
   font-size: 14px;
 `;
 
-const SignIn = () => {
-  const navigate = useNavigate(); // navigate를 통해 페이지 이동
+const SignUp = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  // 로그인 처리
-  const handleSignIn = async (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/'); // 로그인 성공 후 홈으로 이동
+      await createUserWithEmailAndPassword(auth, email, password);
+      navigate('/'); // 회원가입 후 홈으로 이동
     } catch (err) {
       setError(err.message); // 에러 메시지 처리
     }
   };
 
   return (
-    <SignInContainer>
-      <LoginCard>
-        <h2>로그인</h2>
-        <form onSubmit={handleSignIn}>
+    <SignUpContainer>
+      <SignUpCard>
+        <h2>회원가입</h2>
+        <form onSubmit={handleSignUp}>
           <Input
             type="email"
             placeholder="이메일"
@@ -88,15 +86,15 @@ const SignIn = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
-          <Button type="submit">로그인</Button>
+          <Button type="submit">회원가입</Button>
         </form>
-        <SignUpLink>
-          <span>아직 계정이 없으신가요? </span>
-          <a href="/signup">회원가입</a>
-        </SignUpLink>
-      </LoginCard>
-    </SignInContainer>
+        <SignInLink>
+          <span>이미 계정이 있으신가요? </span>
+          <a href="/login">로그인</a>
+        </SignInLink>
+      </SignUpCard>
+    </SignUpContainer>
   );
 };
 
-export default SignIn;
+export default SignUp;
