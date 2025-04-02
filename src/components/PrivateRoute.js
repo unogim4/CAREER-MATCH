@@ -13,7 +13,7 @@ const PrivateRoute = ({ element, ...rest }) => {
         currentUser ? ( // 로그인 되어 있으면 페이지 보여주기
           element
         ) : (
-          <Redirect to="/login" /> // 로그인 안 되어 있으면 로그인 페이지로 리디렉션
+          <Navigate to="/login" /> // 로그인 안 되어 있으면 로그인 페이지로 리디렉션
         )
       }
     />
