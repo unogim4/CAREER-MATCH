@@ -1,11 +1,11 @@
 // src/pages/SignIn.js
+
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components'; 
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 
-// 스타일 정의
 const SignInContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -65,7 +65,7 @@ const SignIn = () => {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/'); // 로그인 후 홈으로 이동
     } catch (err) {
-      setError(err.message);
+      setError(err.message); // 오류 메시지 처리
     }
   };
 
