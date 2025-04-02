@@ -25,17 +25,15 @@ function App() {
             <Header />
             <main className="container">
               <Routes>
-                <Route path="/" element={<ResumeForm />} />
-                <Route path="/skills" element={<SkillsForm />} />
-                <Route path="/loading" element={<LoadingScreen />} />
-                <Route path="/results" element={<ResultsScreen />} />
                 <Route path="/login" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
-
-                {/* 로그인 후에만 접근할 수 있는 페이지 */}
+                
+                {/* 로그인 후 접근할 수 있는 페이지 */}
                 <PrivateRoute path="/resume" element={<ResumeForm />} />
                 <PrivateRoute path="/skills" element={<SkillsForm />} />
                 <PrivateRoute path="/results" element={<ResultsScreen />} />
+                {/* 로그인하지 않으면 login 화면으로 이동 */}
+                <Route path="/" element={<ResumeForm />} />
               </Routes>
             </main>
             <Footer />
