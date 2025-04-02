@@ -1,5 +1,4 @@
 // src/pages/SignIn.js
-
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
@@ -13,48 +12,10 @@ const SignInContainer = styled.div`
   height: 100vh;
   background-color: #f4f5f7;
 `;
-
-const LoginCard = styled.div`
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 400px;
-  text-align: center;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  font-size: 16px;
-`;
-
-const Button = styled.button`
-  width: 100%;
-  padding: 12px;
-  background-color: #1a73e8;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #135f9e;
-  }
-`;
-
-const SignUpLink = styled.p`
-  margin-top: 15px;
-  font-size: 14px;
-`;
+// 나머지 코드 ...
 
 const SignIn = () => {
-  const navigate = useNavigate(); // navigate를 통해 페이지 이동
+  const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -62,11 +23,10 @@ const SignIn = () => {
   const handleSignIn = async (e) => {
     e.preventDefault();
     try {
-      // Firebase에서 로그인 처리
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/'); // 로그인 성공 후 홈으로 이동
+      navigate('/'); // 로그인 후 메인 화면으로 이동
     } catch (err) {
-      setError(err.message); // 에러 메시지 처리
+      setError(err.message);
     }
   };
 

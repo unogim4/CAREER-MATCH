@@ -1,3 +1,4 @@
+// src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -10,10 +11,9 @@ import ResultsScreen from './pages/ResultsScreen';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { UserProvider } from './context/UserContext';
-
-// ✅ 로그인/회원가입 컴포넌트 추가
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import PrivateRoute from './components/PrivateRoute'; // PrivateRoute 추가
 
 function App() {
   return (
@@ -29,10 +29,13 @@ function App() {
                 <Route path="/skills" element={<SkillsForm />} />
                 <Route path="/loading" element={<LoadingScreen />} />
                 <Route path="/results" element={<ResultsScreen />} />
-                
-                {/* ✅ 로그인/회원가입 라우팅 추가 */}
                 <Route path="/login" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+
+                {/* 로그인 후에만 접근할 수 있는 페이지 */}
+                <PrivateRoute path="/resume" element={<ResumeForm />} />
+                <PrivateRoute path="/skills" element={<SkillsForm />} />
+                <PrivateRoute path="/results" element={<ResultsScreen />} />
               </Routes>
             </main>
             <Footer />
