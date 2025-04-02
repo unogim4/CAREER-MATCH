@@ -11,6 +11,10 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { UserProvider } from './context/UserContext';
 
+// ✅ 로그인/회원가입 컴포넌트 추가
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
+
 function App() {
   return (
     <UserProvider>
@@ -25,6 +29,10 @@ function App() {
                 <Route path="/skills" element={<SkillsForm />} />
                 <Route path="/loading" element={<LoadingScreen />} />
                 <Route path="/results" element={<ResultsScreen />} />
+                
+                {/* ✅ 로그인/회원가입 라우팅 추가 */}
+                <Route path="/login" element={<SignIn />} />
+                <Route path="/signup" element={<SignUp />} />
               </Routes>
             </main>
             <Footer />
