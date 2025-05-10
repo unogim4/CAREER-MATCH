@@ -16,7 +16,7 @@ const app = express();
 // 미들웨어 설정
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // 라우트 설정
 app.use('/api/profile', profileRouter);
@@ -24,7 +24,7 @@ app.use('/api/jobs', jobsRouter);
 
 // React 앱 제공 (프로덕션 모드)
 app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
 });
 
 // 서버 시작
